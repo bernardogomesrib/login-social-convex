@@ -5,14 +5,13 @@ import { toast } from "sonner";
 import { GitLogin } from "./GitHubButton";
 
 export function SignInForm() {
-  const { signIn,} = useAuthActions();
+  const { signIn, } = useAuthActions();
   const [flow, setFlow] = useState<"signIn" | "signUp">("signIn");
   const [submitting, setSubmitting] = useState(false);
 
   return (
-    <div className="w-full">
-      <form
-        className="flex flex-col gap-4"
+    <div className="h-full w-full">
+      <form className="flex flex-col gap-4"
         onSubmit={async (e) => {
           e.preventDefault();
           setSubmitting(true);

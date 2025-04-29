@@ -19,7 +19,7 @@ export const atualizarStatus = mutation({
       throw new Error("Usuário não autenticado");
     }
 
-    const userId = identity.subject as Id<"users">;
+    const userId = identity.subject.split("|")[0] as Id<"users">;
 
     // Procura o registro do usuário
     const usuario = await ctx.db
@@ -27,11 +27,13 @@ export const atualizarStatus = mutation({
       .withIndex("by_user", (q) => q.eq("userId", userId))
       .unique();
 
+    const user = await ctx.db.get(userId);
     if (!usuario) {
       // Se não existir, cria um novo
+      console.log
       return await ctx.db.insert("usuarios", {
         userId,
-        name: identity.name ?? "Anônimo",
+        name:  user?.name?? "Anônimo",
         ultimaAtividade: Date.now(),
         digitando: args.digitando,
       });
@@ -41,6 +43,19 @@ export const atualizarStatus = mutation({
     return await ctx.db.patch(usuario._id, {
       ultimaAtividade: Date.now(),
       digitando: args.digitando,
+      name: user?.name?? "Anônimo",
     });
   },
 });
+export const getUsuarioViaId= query({
+  args: {
+    userId: v.id("users"),
+  },
+  handler: async (ctx, args) => {
+    const usuario = await ctx.db
+      .query("usuarios")
+      .withIndex("by_user", (q) => q.eq("userId", args.userId))
+      .unique();
+    return usuario;
+  },
+})

@@ -19,7 +19,7 @@ export const sendMessages = mutation({
       throw new Error("Usuário não autenticado");
     }
 
-    const userId = identity.subject as Id<"users">;
+    const userId = identity.subject.split("|")[0] as Id<"users">;
 
     await ctx.db.insert("messages", {
       text: args.text,
@@ -28,3 +28,5 @@ export const sendMessages = mutation({
     });
   },
 });
+
+

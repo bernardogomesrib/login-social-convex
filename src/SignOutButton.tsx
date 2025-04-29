@@ -15,7 +15,7 @@ export function SignOutButton() {
       className="px-4 py-2 rounded-lg transition-colors bg-blue-500 text-white"
       onClick={() => void signOut()}
     >
-      Sign out
+      Sair
     </button>
   );
 }
