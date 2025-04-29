@@ -14,5 +14,6 @@ export default defineSchema({
     name: v.string(),
     ultimaAtividade: v.number(),
     digitando: v.boolean(),
+    imagem: v.optional(v.string()),
   }).index("by_user", ["userId"]),
 });

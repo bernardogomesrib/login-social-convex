@@ -18,6 +18,7 @@ const DisplayUsuario = ({usuario}:{usuario:Usuario}) => {
 
     return(<div className="usuario" key={usuario.userId}>
         <div className="usuario-info">
+            {usuario.imagem && <img className="usuario-imagem" src={usuario.imagem} alt="imagem do usuario" />}
             <span className="usuario-nome">{usuario.name}</span>
             <span className={`status-ativo ${isOnline ? 'online' : 'offline'}`}></span>
         </div>

@@ -36,6 +36,7 @@ export const atualizarStatus = mutation({
         name:  user?.name?? "Anônimo",
         ultimaAtividade: Date.now(),
         digitando: args.digitando,
+        imagem: user?.image,
       });
     }
 
@@ -44,6 +45,7 @@ export const atualizarStatus = mutation({
       ultimaAtividade: Date.now(),
       digitando: args.digitando,
       name: user?.name?? "Anônimo",
+      imagem: user?.image,
     });
   },
 });

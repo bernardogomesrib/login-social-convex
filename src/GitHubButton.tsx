@@ -4,6 +4,6 @@ import React from "react";
 export function GitLogin() {
     const { signIn } = useAuthActions();
     return (
-        <button className="auth-button" onClick={() => void signIn("google")}>Sign in with Google</button>
+        <button className="auth-button" onClick={() => void signIn("google")}>Login com Google</button>
     );
 }

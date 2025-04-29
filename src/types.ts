@@ -15,6 +15,7 @@ export type Usuario = {
   name: string;
   ultimaAtividade: number;
   digitando: boolean;
+  imagem?: string | undefined;
 };
 export type Mensagem = {
   text: string;
